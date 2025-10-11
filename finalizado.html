@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedido Finalizado</title>
+    <link rel="stylesheet" href="finalizado.css">
+</head>
+<body>
+    <form id="pedidoForm" class="container">
+        <h3>Finalizar Pedido</h3>
+
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
+
+        <label>Tipo de Entrega:</label>
+        <select id="tipoEntrega" onchange="atualizarEntrega()">
+            <option value="">Selecione</option>
+            <option value="retirada">Retirada no local</option>
+            <option value="delivery">Delivery</option>
+        </select>
+
+        <div id="infoRetirada" style="display: none; margin-top: 10px;">
+            <strong>Endereço para retirada:</strong><br>
+            Rua Cândido Mendes. n• 351. ( Ao lado da igreja Matriz).
+            <br>
+            
+        </div>
+
+        <div id="campoEndereco" style="display: none;">
+            <label for="endereco">Endereço para entrega:</label>
+            <textarea id="endereco"></textarea>
+        </div>
+
+        <label for="pagamento">Forma de Pagamento:</label>
+        <select id="pagamento" required>
+            <option value="">Selecione</option>
+            <option value="Cartão">Cartão</option>
+            <option value="Pix">Pix</option>
+            <option value="Dinheiro">Dinheiro</option>
+        </select>
+
+        <label for="pedido">Pedido:</label>
+        <textarea id="pedido" required readonly></textarea>
+
+        <button type="button" onclick="enviarWhatsApp()">Finalizar Pedido</button>
+    </form>
+
+    <script>
+        function atualizarEntrega() {
+            const tipo = document.getElementById("tipoEntrega").value;
+            const campoEndereco = document.getElementById("campoEndereco");
+            const infoRetirada = document.getElementById("infoRetirada");
+
+            if (tipo === "delivery") {
+                campoEndereco.style.display = "block";
+                infoRetirada.style.display = "none";
+            } else if (tipo === "retirada") {
+                campoEndereco.style.display = "none";
+                infoRetirada.style.display = "block";
+            } else {
+                campoEndereco.style.display = "none";
+                infoRetirada.style.display = "none";
+            }
+        }
+
+        function carregarPedido() {
+            let carrinho;
+            try {
+                carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+                console.log("Carrinho recuperado:", carrinho);
+            } catch (e) {
+                console.error("Erro ao ler carrinho:", e);
+                carrinho = [];
+            }
+
+            const campoPedido = document.getElementById("pedido");
+
+            if (!Array.isArray(carrinho)) {
+                campoPedido.value = "Formato inválido do carrinho!";
+                return;
+            }
+
+            if (carrinho.length === 0) {
+                campoPedido.value = "Seu carrinho está vazio!";
+                return;
+            }
+
+            let pedidoTexto = "";
+            carrinho.forEach(item => {
+                if (!item || typeof item !== 'object') {
+                    pedidoTexto += "Item inválido no carrinho!\n";
+                    return;
+                }
+
+                const tamanho = item.tamanho || "Tamanho não especificado";
+                const tipo = item.tipo || "Tipo não especificado";
+                const complementos = item.complementos && Array.isArray(item.complementos)
+                    ? item.complementos.join(", ")
+                    : "Sem complementos";
+
+                pedidoTexto += `🍧 ${tipo} - ${tamanho}ml`;
+                if (complementos !== "Sem complementos") {
+                    pedidoTexto += ` (Complementos: ${complementos})`;
+                }
+                pedidoTexto += "\n";
+            });
+
+            campoPedido.value = pedidoTexto;
+        }
+
+        function enviarWhatsApp() {
+            let nome = document.getElementById("nome").value;
+            let pedido = document.getElementById("pedido").value;
+            let tipoEntrega = document.getElementById("tipoEntrega").value;
+            let endereco = document.getElementById("endereco").value;
+            let pagamento = document.getElementById("pagamento").value;
+
+            if (!nome || !tipoEntrega || !pagamento || pedido.includes("vazio") || pedido.includes("inválido")) {
+                alert("Preencha todos os campos corretamente antes de finalizar.");
+                return;
+            }
+
+            if (tipoEntrega === "delivery" && !endereco.trim()) {
+                alert("Por favor, informe o endereço para entrega.");
+                return;
+            }
+
+            let numeroDono = "5598970123447";
+
+            let mensagem = `📢 *Novo Pedido!* \n\n👤 *Cliente:* ${nome}\n\n📦 *Tipo de Entrega:* ${tipoEntrega === "retirada" ? "Retirada no local" : "Delivery"}`;
+
+            if (tipoEntrega === "delivery") {
+                mensagem += `\n📍 *Endereço:* ${endereco}`;
+            }
+
+            mensagem += `\n💳 *Pagamento:* ${pagamento}\n\n🛒 *Pedido:*\n${pedido}`;
+
+            window.open(`https://api.whatsapp.com/send?phone=${numeroDono}&text=${encodeURIComponent(mensagem)}`, '_blank');
+        }
+
+        window.addEventListener('DOMContentLoaded', carregarPedido);
+    </script>
+</body>
+</html>

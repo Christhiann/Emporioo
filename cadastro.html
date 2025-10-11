@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro do Cliente</title>
+    <link rel="stylesheet" href="cadastro.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Cadastro do Cliente</h2>
+        <form id="formCadastro">
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="telefone">Número de Celular:</label>
+            <input type="tel" id="telefone" name="telefone" placeholder="(99) 99999-9999" required>
+            
+            <button type="submit" onclick="handclick()">Finalizar Pedido</button>
+        </form>
+    </div>
+    <script>
+        function handclick(){
+            window.location.href = "finalizado.html";
+        }
+        document.getElementById("formCadastro").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let nome = document.getElementById("nome").value;
+            let telefone = document.getElementById("telefone").value;
+            if (nome && telefone) {
+    
+            }
+        });
+    </script>
+</body>
+</html>

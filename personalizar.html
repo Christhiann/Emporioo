@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize seu Açaí</title>
+    <link rel="stylesheet" href="personalizar.css">
+</head>
+<body>
+    
+    <div class="container">
+        <h2>EMPORIO AÇAÍ <span id="tamanhoEscolhido"></span></h2>
+        <p>Escolha os acompanhamentos de sua preferência!</p>  
+
+        <!-- Acompanhamentos -->
+        <div class="acompanhamentos">
+            <div class="acompanhamento-item">
+                <span>Choco Power</span>
+                <button class="adicionaritem" onclick="addToCart('Choco Power')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Creme de Cookies</span>
+                <button class="adicionaritem" onclick="addToCart('Creme de Cookies')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Creme de Avelã</span>
+                <button class="adicionaritem" onclick="addToCart('Creme de Avelã')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Mm's</span>
+                <button class="adicionaritem" onclick="addToCart('Mm\'s')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Gotas de Chocolate</span>
+                <button class="adicionaritem" onclick="addToCart('Gotas de Chocolate')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Castanhas</span>
+                <button class="adicionaritem" onclick="addToCart('Castanhas')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Amendoim</span>
+                <button class="adicionaritem" onclick="addToCart('Amendoim')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Granola</span>
+                <button class="adicionaritem" onclick="addToCart('Granola')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Jujuba</span>
+                <button class="adicionaritem" onclick="addToCart('Jujuba')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Paçoca</span>
+                <button class="adicionaritem" onclick="addToCart('Paçoca')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Flocos de tapioca</span>
+                <button class="adicionaritem" onclick="addToCart('Flocos de tapioca')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Farinha láctea</span>
+                <button class="adicionaritem" onclick="addToCart('Farinha Láctea')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Leite em pó</span>
+                <button class="adicionaritem" onclick="addToCart('Leite em pó')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Ovo maltine</span>
+                <button class="adicionaritem" onclick="addToCart('Ovo maltine')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Fini</span>
+                <button class="adicionaritem" onclick="addToCart('Fini')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Canudo Waffer</span>
+                <button class="adicionaritem" onclick="addToCart('Canudo Waffer')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Chocolate Granulado</span>
+                <button class="adicionaritem" onclick="addToCart('Chocolate Granulado')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Choco Ball</span>
+                <button class="adicionaritem" onclick="addToCart('Choco Ball')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Cereja</span>
+                <button class="adicionaritem" onclick="addToCart('Cereja')">Adicionar</button>
+            </div>
+        </div>
+        <h2>Cremes<span id="tamanhoEscolhido"></span></h2>
+        <div class="acompanhamento-item">
+            <span>Creme de Ninho</span>
+            <button class="adicionaritem" onclick="addToCart('Creme de Ninho')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Creme de Morango</span>
+            <button class="adicionaritem" onclick="addToCart('Creme de Morango')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Creme de Maracujá</span>
+            <button class="adicionaritem" onclick="addToCart('Creme de Maracujá')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Creme de Tapioca</span>
+            <button class="adicionaritem" onclick="addToCart('Creme de Tapioca')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Creme de Oreo</span>
+            <button class="adicionaritem" onclick="addToCart('Creme de Oreo')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Creme de Bacuri</span>
+            <button class="adicionaritem" onclick="addToCart('Creme de Bacuri')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Creme de Ovomaltine</span>
+            <button class="adicionaritem" onclick="addToCart('Creme de Ovomaltine')">Adicionar</button>
+        </div>
+        <h2>SORVETES<span id="tamanhoEscolhido"></span></h2>
+        <div class="acompanhamento-item">
+            <span>Sorvete de Creme com Passas</span>
+            <button class="adicionaritem" onclick="addToCart('Sorvete de Creme com Passas')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Sorvete de Morango</span>
+            <button class="adicionaritem" onclick="addToCart('Sorvete de Morango')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Sorvete de Chocolate</span>
+            <button class="adicionaritem" onclick="addToCart('Sorvete de Chocolate')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Sorvete de Flocos</span>
+            <button class="adicionaritem" onclick="addToCart('Sorvete de Flocos')">Adicionar</button>
+        </div>
+        <h2>FRUTAS<span id="tamanhoEscolhido"></span></h2>
+        <div class="acompanhamento-item">
+            <span>Morango</span>
+            <button class="adicionaritem" onclick="addToCart('Morango')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Banana</span>
+            <button class="adicionaritem" onclick="addToCart('Banana')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>Kiwi</span>
+            <button class="adicionaritem" onclick="addToCart('Kiwi')">Adicionar</button>
+        </div>
+        <h2>Cobertura/Caldas<span id="tamanhoEscolhido"></span></h2>
+        <div class="acompanhamento-item">
+            <span>C.Leite condensado</span>
+            <button class="adicionaritem" onclick="addToCart('C.Leite condensado')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>C.de Chocolate</span>
+            <button class="adicionaritem" onclick="addToCart('C. de Chocolate')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>C.de Morango</span>
+            <button class="adicionaritem" onclick="addToCart('C. de Morango')">Adicionar</button>
+        </div>
+         <div class="acompanhamento-item">
+            <span>C.de Caramelo</span>
+            <button class="adicionaritem" onclick="addToCart('C. de Caramelo')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>C.de Fini (Beijinho)</span>
+            <button class="adicionaritem" onclick="addToCart('C. de Fini (Beijinho)')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>C.de Fini (Dentadura)</span>
+            <button class="adicionaritem" onclick="addToCart('C. de Fini (Dentadura)')">Adicionar</button>
+        </div>
+        <div class="acompanhamento-item">
+            <span>C.de Fini (Banana)</span>
+            <button class="adicionaritem" onclick="addToCart('C. de Fini (Banana)')">Adicionar</button>
+        </div>
+
+        <!-- Carrinho -->
+        <div class="cart-container">
+            <h3>Seu Carrinho</h3>
+            <ul id="cart-items"></ul>
+        </div>
+
+        <button id="btnConfirmar" onclick="confirmarPedido()">Confirmar</button>
+    </div>
+    
+    <script src="personalizar.js"></script>
+</body>
+</html>
