@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalize seu Açaí</title>
+    <link rel="stylesheet" href="personalizarmilk.css">
+</head>
+
+<body>
+    <div class="container">
+        <h2>EMPORIO AÇAÍ <span id="tamanhoEscolhido"></span></h2>
+        <p>Escolha um Sabor!</p>
+        <!-- Acompanhamentos -->
+         <div  class="acompanhamentos">
+            <div class="acompanhamento-item">
+                <span>Morango</span>
+                <button class="adicionaritem" onclick="addToCart('Morango')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Ovo Maltine</span>
+                <button class="adicionaritem" onclick="addToCart('Ovo Maltine')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Chocolate</span>
+                <button class="adicionaritem" onclick="addToCart('Chocolate')">Adicionar</button>
+            </div>
+            <div class="acompanhamento-item">
+                <span>Sensação</span>
+                <button class="adicionaritem" onclick="addToCart('Sensação')">Adicionar</button>
+            </div>
+
+         </div>
+
+    </div>
+    <!-- Carrinho -->
+        <div class="cart-container">
+            <h3>Seu Carrinho</h3>
+            <ul id="cart-items"></ul>
+        </div>
+
+        <button id="btnConfirmar" onclick="confirmarPedido()">Confirmar</button>
+    </div>
+    <script src="personalizarMilk.js"></script>
+</body>
