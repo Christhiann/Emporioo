@@ -20,7 +20,7 @@ function handclick(tamanho, tipo) {
 
     let preco = 0;
     if (tipo === 'Milkshake') {
-        if (tamanho === '300') preco = 13.00;
+        if (tamanho === '300') preco = 15.00;
         if (tamanho === '500') preco = 19.00;
     }
 
@@ -45,4 +45,5 @@ function handclick(tamanho, tipo) {
         window.location.href = "personalizar.html"; // outros produtos
     }
 }
+
 
