@@ -40,8 +40,9 @@ function handclick(tamanho, tipo) {
 
     // Redireciona para a página correta
     if (tipo.toLowerCase() === "milkshake") {
-        window.location.href = "milk/personalizarMilk.html"; // milkshake vai para página de sabores
+        window.location.href = "milk/PersonalizarMilk.html"; // milkshake vai para página de sabores
     } else {
         window.location.href = "personalizar.html"; // outros produtos
     }
 }
+
