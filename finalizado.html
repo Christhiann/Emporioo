@@ -47,99 +47,111 @@
     </form>
 
     <script>
-        function atualizarEntrega() {
-            const tipo = document.getElementById("tipoEntrega").value;
-            const campoEndereco = document.getElementById("campoEndereco");
-            const infoRetirada = document.getElementById("infoRetirada");
+function atualizarEntrega() {
+    const tipo = document.getElementById("tipoEntrega").value;
+    const campoEndereco = document.getElementById("campoEndereco");
+    const infoRetirada = document.getElementById("infoRetirada");
 
-            if (tipo === "delivery") {
-                campoEndereco.style.display = "block";
-                infoRetirada.style.display = "none";
-            } else if (tipo === "retirada") {
-                campoEndereco.style.display = "none";
-                infoRetirada.style.display = "block";
-            } else {
-                campoEndereco.style.display = "none";
-                infoRetirada.style.display = "none";
-            }
+    if (tipo === "delivery") {
+        campoEndereco.style.display = "block";
+        infoRetirada.style.display = "none";
+    } else if (tipo === "retirada") {
+        campoEndereco.style.display = "none";
+        infoRetirada.style.display = "block";
+    } else {
+        campoEndereco.style.display = "none";
+        infoRetirada.style.display = "none";
+    }
+}
+
+function carregarPedido() {
+    let carrinho;
+    try {
+        carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
+        console.log("Carrinho recuperado:", carrinho);
+    } catch (e) {
+        console.error("Erro ao ler carrinho:", e);
+        carrinho = [];
+    }
+
+    const campoPedido = document.getElementById("pedido");
+
+    if (!Array.isArray(carrinho)) {
+        campoPedido.value = "Formato inválido do carrinho!";
+        return;
+    }
+
+    if (carrinho.length === 0) {
+        campoPedido.value = "Seu carrinho está vazio!";
+        return;
+    }
+
+    let pedidoTexto = "";
+    carrinho.forEach(item => {
+        if (!item || typeof item !== 'object') {
+            pedidoTexto += "Item inválido no carrinho!\n";
+            return;
         }
 
-        function carregarPedido() {
-            let carrinho;
-            try {
-                carrinho = JSON.parse(localStorage.getItem("carrinho")) || [];
-                console.log("Carrinho recuperado:", carrinho);
-            } catch (e) {
-                console.error("Erro ao ler carrinho:", e);
-                carrinho = [];
+        const tamanho = item.tamanho || "Tamanho não especificado";
+        const tipo = item.tipo || "Tipo não especificado";
+        const sabor = item.sabor || "Nenhum sabor escolhido";
+        const preco = item.preco ? ` - R$ ${item.preco.toFixed(2)}` : "";
+
+        pedidoTexto += `🍧 ${tipo} - ${tamanho}ml${preco}`;
+
+        // Só adiciona complementos se não for Milkshake
+        if (tipo.toLowerCase() !== "milkshake") {
+            const complementos = item.complementos && Array.isArray(item.complementos)
+                ? item.complementos.join(", ")
+                : "Sem complementos";
+
+            if (complementos !== "Sem complementos") {
+                pedidoTexto += ` (Complementos: ${complementos})`;
             }
-
-            const campoPedido = document.getElementById("pedido");
-
-            if (!Array.isArray(carrinho)) {
-                campoPedido.value = "Formato inválido do carrinho!";
-                return;
-            }
-
-            if (carrinho.length === 0) {
-                campoPedido.value = "Seu carrinho está vazio!";
-                return;
-            }
-
-            let pedidoTexto = "";
-            carrinho.forEach(item => {
-                if (!item || typeof item !== 'object') {
-                    pedidoTexto += "Item inválido no carrinho!\n";
-                    return;
-                }
-
-                const tamanho = item.tamanho || "Tamanho não especificado";
-                const tipo = item.tipo || "Tipo não especificado";
-                const complementos = item.complementos && Array.isArray(item.complementos)
-                    ? item.complementos.join(", ")
-                    : "Sem complementos";
-
-                pedidoTexto += `🍧 ${tipo} - ${tamanho}ml`;
-                if (complementos !== "Sem complementos") {
-                    pedidoTexto += ` (Complementos: ${complementos})`;
-                }
-                pedidoTexto += "\n";
-            });
-
-            campoPedido.value = pedidoTexto;
+        } else {
+            // Para Milkshake, mostra o sabor
+            pedidoTexto += ` (Sabor: ${sabor})`;
         }
 
-        function enviarWhatsApp() {
-            let nome = document.getElementById("nome").value;
-            let pedido = document.getElementById("pedido").value;
-            let tipoEntrega = document.getElementById("tipoEntrega").value;
-            let endereco = document.getElementById("endereco").value;
-            let pagamento = document.getElementById("pagamento").value;
+        pedidoTexto += "\n";
+    });
 
-            if (!nome || !tipoEntrega || !pagamento || pedido.includes("vazio") || pedido.includes("inválido")) {
-                alert("Preencha todos os campos corretamente antes de finalizar.");
-                return;
-            }
+    campoPedido.value = pedidoTexto;
+}
 
-            if (tipoEntrega === "delivery" && !endereco.trim()) {
-                alert("Por favor, informe o endereço para entrega.");
-                return;
-            }
+function enviarWhatsApp() {
+    let nome = document.getElementById("nome").value;
+    let pedido = document.getElementById("pedido").value;
+    let tipoEntrega = document.getElementById("tipoEntrega").value;
+    let endereco = document.getElementById("endereco").value;
+    let pagamento = document.getElementById("pagamento").value;
 
-            let numeroDono = "5598970123447";
+    if (!nome || !tipoEntrega || !pagamento || pedido.includes("vazio") || pedido.includes("inválido")) {
+        alert("Preencha todos os campos corretamente antes de finalizar.");
+        return;
+    }
 
-            let mensagem = `📢 *Novo Pedido!* \n\n👤 *Cliente:* ${nome}\n\n📦 *Tipo de Entrega:* ${tipoEntrega === "retirada" ? "Retirada no local" : "Delivery"}`;
+    if (tipoEntrega === "delivery" && !endereco.trim()) {
+        alert("Por favor, informe o endereço para entrega.");
+        return;
+    }
 
-            if (tipoEntrega === "delivery") {
-                mensagem += `\n📍 *Endereço:* ${endereco}`;
-            }
+    let numeroDono = "5598970123447";
 
-            mensagem += `\n💳 *Pagamento:* ${pagamento}\n\n🛒 *Pedido:*\n${pedido}`;
+    let mensagem = `📢 *Novo Pedido!* \n\n👤 *Cliente:* ${nome}\n\n📦 *Tipo de Entrega:* ${tipoEntrega === "retirada" ? "Retirada no local" : "Delivery"}`;
 
-            window.open(`https://api.whatsapp.com/send?phone=${numeroDono}&text=${encodeURIComponent(mensagem)}`, '_blank');
-        }
+    if (tipoEntrega === "delivery") {
+        mensagem += `\n📍 *Endereço:* ${endereco}`;
+    }
 
-        window.addEventListener('DOMContentLoaded', carregarPedido);
-    </script>
+    mensagem += `\n💳 *Pagamento:* ${pagamento}\n\n🛒 *Pedido:*\n${pedido}`;
+
+    window.open(`https://api.whatsapp.com/send?phone=${numeroDono}&text=${encodeURIComponent(mensagem)}`, '_blank');
+}
+
+window.addEventListener('DOMContentLoaded', carregarPedido);
+</script>
+
 </body>
 </html>
