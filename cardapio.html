@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cardápio de Açaí</title>
     <link rel="stylesheet" href="cardapio.css">
 </head>
+
 <body>
 
     <nav class="navbar">
@@ -85,19 +87,35 @@
             </div>
         </section>
         <!-- Milkshakes -->
-<section class="category">
-    <h3>MILKSHAKES</h3>
+        <section class="category">
+            <h3>MILKSHAKES</h3>
+            <div class="cards">
+                <div class="card" onclick="handclick('300', 'Milkshake')">
+                    <img src="img/Milk.jpg" alt="Milkshake">
+                    <span class="card-text">Milkshake 300ml</span>
+                    <p class="description">R$ 18,00<br>Toque para ver os sabores disponíveis!</p>
+                </div>
+
+                <div class="card" onclick="handclick('500', 'Milkshake')">
+                    <img src="img/Milk.jpg" alt="Milkshake">
+                    <span class="card-text">Milkshake 500ml</span>
+                    <p class="description">R$ 24,00<br>Toque para ver os sabores disponíveis!</p>
+                </div>
+            </div>
+        </section>
+        <section class="category">
+    <h3>BATIDINHAS</h3>
     <div class="cards">
-        <div class="card" onclick="handclick('300', 'Milkshake')">
-            <img src="img/Milk.jpg" alt="Milkshake">
-            <span class="card-text">Milkshake 300ml</span>
-            <p class="description">R$ 15,00<br>Toque para ver os sabores disponíveis!</p>
+        <div class="card" onclick="handclick('300', 'Batidinha')">
+            <img src="img/batidinhaT.jpeg" alt="Batidinha 300ml">
+            <span class="card-text">Batidinha 300ml</span>
+            <p class="description">A partir de R$ 16,00<br>Toque para ver os sabores disponíveis!</p>
         </div>
 
-        <div class="card" onclick="handclick('500', 'Milkshake')">
-            <img src="img/Milk.jpg" alt="Milkshake">
-            <span class="card-text">Milkshake 500ml</span>
-            <p class="description">R$ 19,00<br>Toque para ver os sabores disponíveis!</p>
+        <div class="card" onclick="handclick('500', 'Batidinha')">
+            <img src="img/batidinhaP.jpeg" alt="Batidinha 500ml">
+            <span class="card-text">Batidinha 500ml</span>
+            <p class="description">A partir de R$ 25,00<br>Toque para ver os sabores disponíveis!</p>
         </div>
     </div>
 </section>
@@ -106,5 +124,5 @@
 
     <script src="cardapio.js"></script>
 </body>
-</html>
 
+</html>

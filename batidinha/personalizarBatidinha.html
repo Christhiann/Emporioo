@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Escolha sua Batidinha</title>
+    <link rel="stylesheet" href="personalizarBatidinha.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <h2>EMPÓRIO AÇAÍ</h2>
+        <p>Escolha um sabor:</p>
+
+        <!-- SABORES -->
+        <div class="acompanhamentos">
+
+            <div class="acompanhamento-item">
+                <span>Tradicional</span>
+                <button onclick="addToCart('Tradicional')">Adicionar</button>
+            </div>
+
+            <div class="acompanhamento-item">
+                <span>Paçoca</span>
+                <button onclick="addToCart('Paçoca')">Adicionar</button>
+            </div>
+
+            <div class="acompanhamento-item">
+                <span>Morango</span>
+                <button onclick="addToCart('Morango')">Adicionar</button>
+            </div>
+
+            <div class="acompanhamento-item">
+                <span>Ninho</span>
+                <button onclick="addToCart('Ninho')">Adicionar</button>
+            </div>
+
+            <div class="acompanhamento-item">
+                <span>Avelã</span>
+                <button onclick="addToCart('Avelã')">Adicionar</button>
+            </div>
+
+            <div class="acompanhamento-item">
+                <span>Maracujá</span>
+                <button onclick="addToCart('Maracujá')">Adicionar</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- CARRINHO -->
+    <div class="cart-container">
+        <h3>Seu Carrinho</h3>
+        <ul id="cart-items"></ul>
+    </div>
+
+    <!-- BOTÃO CONFIRMAR -->
+    <button id="btnConfirmar" onclick="confirmarPedido()">
+        Confirmar Pedido
+    </button>
+
+    <script src="personalizarBatidinha.js"></script>
+
+</body>
+</html>

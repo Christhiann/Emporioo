@@ -14,36 +14,44 @@ cards.forEach(card => {
     observer.observe(card);
 });
 
-// Função chamada ao clicar em um item do cardápio
+// Clique nos itens
 function handclick(tamanho, tipo) {
-    console.log('Milkshake selecionado:', tamanho, tipo);
+    console.log('Item selecionado:', tamanho, tipo);
 
     let preco = 0;
+
+    // MILKSHAKE (preço fixo aqui)
     if (tipo === 'Milkshake') {
-        if (tamanho === '300') preco = 15.00;
-        if (tamanho === '500') preco = 19.00;
+        if (tamanho === '300') preco = 18.00;
+        if (tamanho === '500') preco = 24.00;
     }
 
-    // Cria o carrinho com o item selecionado
+    // BATIDINHA (preço só será definido depois)
+    if (tipo === 'Batidinha') {
+        preco = 0;
+    }
+
     const carrinho = [{
         tamanho: tamanho,
         tipo: tipo,
         preco: preco,
-        sabor: "", // ainda não escolhido
+        sabor: "",
         complementos: []
     }];
 
-    // Salva no localStorage
     localStorage.setItem("carrinho", JSON.stringify(carrinho));
 
     console.log('Carrinho atualizado:', carrinho);
 
-    // Redireciona para a página correta
+    // Redirecionamento
     if (tipo.toLowerCase() === "milkshake") {
-        window.location.href = "milk/PersonalizarMilk.html"; // milkshake vai para página de sabores
-    } else {
-        window.location.href = "personalizar.html"; // outros produtos
+        window.location.href = "milk/PersonalizarMilk.html";
+    } 
+    else if (tipo.toLowerCase() === "batidinha") {
+        window.location.href = "batidinha/personalizarBatidinha.html";
+    } 
+    else {
+        window.location.href = "personalizar.html";
     }
 }
-
 
